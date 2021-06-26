@@ -12,3 +12,6 @@
   unarchive:
     src: /tmp/prometheus.tar.gz
     dest: /tmp/prometheus/
+    # With this we will register unarchive log and later get the subfolder with prometheus_unarchive_folder.files[0] -> Top level directory
+    list_files: yes
+  register: prometheus_unarchive_folder
