@@ -1,7 +1,7 @@
 - name: Install Prometheus
   copy:
     src: "/tmp/prometheus/{{ prometheus_unarchive_folder.files[0] }}/{{ item }}"
-    dest: "/tmp/prometheus/{{ prometheus_unarchive_folder.files[0] }}/{{ item }}"
+    dest: "/usr/local/bin/{{ prometheus_unarchive_folder.files[0] }}/{{ item }}"
   with_items:
       - prometheus
       - promtool
