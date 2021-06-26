@@ -20,7 +20,7 @@
 
 - name: Create a /etc/prometheus/ if it does not exist
   file:
-    path: /var/lib/prometheus
+    path: /etc/prometheus/
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
     state: directory
