@@ -10,6 +10,8 @@
   template:
     src: "{{ role_path }}/templates/prometheus.yml"
     dest: /etc/prometheus/
+    owner: "{{ prometheus_user }}"
+    group: "{{ prometheus_group }}"
 
 - name: Create Prometheus systemd service
   template:
