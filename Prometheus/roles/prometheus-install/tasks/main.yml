@@ -2,6 +2,8 @@
   copy:
     src: "/tmp/prometheus/{{ prometheus_unarchive_folder.files[0] }}/{{ item }}"
     dest: "/usr/local/bin/{{ item }}"
+    owner: "{{ prometheus_user }}"
+    group: "{{ prometheus_group }}"
   with_items:
       - prometheus
       - promtool
