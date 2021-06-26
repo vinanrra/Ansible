@@ -2,7 +2,7 @@
   copy:
     src: "/tmp/prometheus/{{ item }}"
     dest: "/tmp/prometheus/{{ item }}"
-    with_items:
+  with_items:
       - prometheus
       - promtool
 
