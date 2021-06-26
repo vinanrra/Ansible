@@ -6,7 +6,6 @@
 - name: Create Prometheus system user
   user:
     name: "{{ prometheus_user }}"
-    password: "{{ prometheus_user_password | password_hash('sha512','A512') }}"
     shell: /bin/bash
     group: "{{ prometheus_group }}"
     state: present
