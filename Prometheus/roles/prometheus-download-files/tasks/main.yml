@@ -1,6 +1,6 @@
 - name: Download Prometheus files
   get_url:
-    url: {{ prometheus_download_url }}
+    url: "{{ prometheus_download_url }}"
     dest: /tmp/prometheus.tar.gz
 
 - name: Extract Prometheus into /tmp/prometheus

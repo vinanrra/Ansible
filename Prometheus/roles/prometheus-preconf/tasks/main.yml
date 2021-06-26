@@ -1,37 +1,37 @@
 - name: Create Prometheus system group
   group:
-    name: {{ prometheus_group }}
+    name: "{{ prometheus_group }}"
     state: present
 
 - name: Create Prometheus system user
   user:
-    name: {{ prometheus_user }}
+    name: "{{ prometheus_user }}"
     password: "{{ prometheus_user_password | password_hash('sha512','A512') }}"
     shell: /bin/bash
-    group: {{ prometheus_group }}
+    group: "{{ prometheus_group }}"
     state: present
 
 - name: Create a /var/lib/prometheus if it does not exist
   ansible.builtin.file:
     path: /var/lib/prometheus
-    owner: {{ prometheus_user }}
-    group: {{ prometheus_group }}
+    owner: "{{ prometheus_user }}"
+    group: "{{ prometheus_group }}"
     state: directory
     mode: '0755'
 
 - name: Create a /etc/prometheus/ if it does not exist
   ansible.builtin.file:
     path: /var/lib/prometheus
-    owner: {{ prometheus_user }}
-    group: {{ prometheus_group }}
+    owner: "{{ prometheus_user }}"
+    group: "{{ prometheus_group }}"
     state: directory
     mode: '0755'
 
 - name: Create a /etc/prometheus/ subdirectories if it does not exist
   ansible.builtin.file:
     path: "{{ item }}"
-    owner: {{ prometheus_user }}
-    group: {{ prometheus_group }}
+    owner: "{{ prometheus_user }}"
+    group: "{{ prometheus_group }}"
     state: directory
     mode: '0755'
     loop:
