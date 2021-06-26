@@ -3,6 +3,11 @@
     url: "{{ prometheus_download_url }}"
     dest: /tmp/prometheus.tar.gz
 
+- name: Create a /tmp/prometheus/ if it does not exist
+  file:
+    path: /tmp/prometheus/
+    state: directory
+
 - name: Extract Prometheus into /tmp/prometheus
   unarchive:
     src: /tmp/prometheus.tar.gz
