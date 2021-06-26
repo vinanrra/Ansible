@@ -1,0 +1,24 @@
+- name: Install Prometheus
+  copy:
+    src: "/tmp/prometheus/{{ item }}"
+    dest: "/tmp/prometheus/{{ item }}"
+    loop:
+      - prometheus
+      - promtool
+
+- name: Add Prometheus template
+  template:
+    src: "{{ role_path }}/templates/prometheus.yml"
+    dest: /etc/prometheus/
+
+- name: Create Prometheus systemd service
+  template:
+    src: "{{ role_path }}/templates/prometheus.service"
+    dest: /etc/systemd/system/
+
+- name: Enable Prometheus systemd daemon and start service
+  command: {{ item }}
+  loop:
+    - systemctl daemon-reload
+    - systemctl start prometheus
+    - systemctl enable prometheus

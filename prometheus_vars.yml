@@ -1,0 +1,4 @@
+prometheus_user: prometheus
+prometheus_group: prometheus
+prometheus_port: 9090
+prometheus_download_url: "https://github.com/prometheus/prometheus/releases/download/v2.28.0/prometheus-2.28.0.linux-amd64.tar.gz"
