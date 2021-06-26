@@ -17,7 +17,7 @@
     dest: /etc/systemd/system/
 
 - name: Enable Prometheus systemd daemon and start service
-  command: {{ item }}
+  command: "{{ item }}"
   loop:
     - systemctl daemon-reload
     - systemctl start prometheus
