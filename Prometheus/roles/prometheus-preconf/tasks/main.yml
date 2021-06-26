@@ -11,7 +11,7 @@
     state: present
 
 - name: Create a /var/lib/prometheus if it does not exist
-  ansible.builtin.file:
+  file:
     path: /var/lib/prometheus
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
@@ -19,7 +19,7 @@
     mode: '0755'
 
 - name: Create a /etc/prometheus/ if it does not exist
-  ansible.builtin.file:
+  file:
     path: /var/lib/prometheus
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
@@ -27,7 +27,7 @@
     mode: '0755'
 
 - name: Create a /etc/prometheus/ subdirectories if it does not exist
-  ansible.builtin.file:
+  file:
     path: "{{ item }}"
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
