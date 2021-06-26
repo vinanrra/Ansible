@@ -2,7 +2,7 @@
   copy:
     src: "/tmp/prometheus/{{ item }}"
     dest: "/tmp/prometheus/{{ item }}"
-    loop:
+    with_items:
       - prometheus
       - promtool
 
@@ -18,7 +18,7 @@
 
 - name: Enable Prometheus systemd daemon and start service
   command: "{{ item }}"
-  loop:
+  with_items:
     - systemctl daemon-reload
     - systemctl start prometheus
     - systemctl enable prometheus
