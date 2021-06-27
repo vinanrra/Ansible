@@ -30,7 +30,7 @@ node_exporter_group: node_exporter
 # Node exporter user
 node_exporter_user: node_exporter
 # Node exporter URL package version to download
-node_exporter_download_url: https://github.com/prometheus/node_exporter/releases/download/v1.1.2/node_exporter-1.1.2.linux-arm64.tar.gz
+node_exporter_download_url: https://github.com/prometheus/node_exporter/releases/download/v1.1.2/node_exporter-1.1.2.linux-amd64.tar.gz
 # Node Exporter metrics directory
 node_exporter_metrics_dir: /prometheus/metrics
 # Node Exporter binaries directory
