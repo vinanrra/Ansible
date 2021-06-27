@@ -26,9 +26,9 @@ prometheus_download_url: https://github.com/prometheus/prometheus/releases/downl
 # Install Node Exporter | Default: "yes" | If missing or different than "yes", Node Exporter will not be installed
 prometheus_node_exporter_install: yes
 # Node exporter group
-node_exporter_group:
+node_exporter_group: node_exporter
 # Node exporter user
-node_exporter_user:
+node_exporter_user: node_exporter
 # Node exporter URL package version to download
 node_exporter_download_url: https://github.com/prometheus/node_exporter/releases/download/v1.1.2/node_exporter-1.1.2.linux-arm64.tar.gz
 # Node Exporter metrics directory
