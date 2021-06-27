@@ -12,7 +12,7 @@
 
 - name: Create a {{ prometheus_db_dir }} if it does not exist
   file:
-    path: {{ prometheus_db_dir }}
+    path: "{{ prometheus_db_dir }}"
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
     state: directory
@@ -26,13 +26,13 @@
     state: directory
     mode: '0755'
   with_items:
-    - {{ prometheus_config_dir }}/rules
-    - {{ prometheus_config_dir }}/rules.d
-    - {{ prometheus_config_dir }}/files_sd
+    - "{{ prometheus_config_dir }}/rules"
+    - "{{ prometheus_config_dir }}/rules.d"
+    - "{{ prometheus_config_dir }}/files_sd"
 
-- name: Create a {{ prometheus_config_dir }}/ if it does not exist
+- name: Create a {{ prometheus_config_dir }} if it does not exist
   file:
-    path: {{ prometheus_config_dir }}/
+    path: "{{ prometheus_config_dir }}"
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
     state: directory

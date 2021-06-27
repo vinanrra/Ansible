@@ -12,7 +12,7 @@
 - name: Add Prometheus template
   template:
     src: "{{ role_path }}/templates/prometheus.yml"
-    dest: {{ prometheus_config_dir }}
+    dest: "{{ prometheus_config_dir }}"
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
     mode: 0644
