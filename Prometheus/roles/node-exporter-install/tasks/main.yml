@@ -1,0 +1,22 @@
+- name: Install Node Exporter binaries
+  copy:
+    src: "/tmp/node_exporter/{{ node_exporter_unarchive_folder.files[0] }}/{{ item }}"
+    dest: "{{ node_exporter_binary_install_dir }}"
+    owner: "{{ node_exporter_user }}"
+    group: "{{ node_exporter_group }}"
+    mode: 0755
+  with_items:
+      - node_exporter
+
+- name: Create Node_exporter systemd service
+  template:
+    src: "{{ role_path }}/templates/node_exporter.service"
+    dest: /etc/systemd/system/
+    mode: 0644
+
+- name: Enable Node Exporter systemd daemon and start service
+  command: "{{ item }}"
+  with_items:
+    - systemctl daemon-reload
+    - systemctl start node_exporter
+    - systemctl enable node_exporter

@@ -1,0 +1,17 @@
+- name: Download Node Exporter files
+  get_url:
+    url: "{{ node_exporter_download_url }}"
+    dest: /tmp/node_exporter.tar.gz
+
+- name: Create a /tmp/node_exporter if it does not exist
+  file:
+    path: /tmp/node_exporter
+    state: directory
+
+- name: Extract Node Exporter into /tmp/node_exporter
+  unarchive:
+    src: /tmp/node_exporter.tar.gz
+    dest: /tmp/node_exporter
+    # With this we will register unarchive log and later get the subfolder with node_exporter_unarchive_folder.files[0] -> Top level directory
+    list_files: yes
+  register: node_exporter_unarchive_folder

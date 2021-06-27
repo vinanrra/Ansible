@@ -1,0 +1,16 @@
+[Unit]
+Description=Node Exporter
+Wants=network-online.target
+After=network-online.target 
+
+[Service]
+Type=simple
+User=node_exporter
+Group=node_exporter
+ExecStart={{ node_exporter_binary_install_dir }}/node_exporter --collector.textfile.directory={{ node_exporter_metrics_dir }}
+Restart=always
+RestartSec=10s
+NotifyAccess=all 
+
+[Install]
+WantedBy=multi-user.target

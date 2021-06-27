@@ -1,0 +1,11 @@
+- name: Add node-exporter-preconf role
+  include_role: 
+    name: node-exporter-preconf
+
+- name: Add node-exporter-download-files role
+  include_role: 
+    name: node-exporter-download-files
+
+- name: Add node-exporter-install role
+  include_role: 
+    name: node-exporter-install

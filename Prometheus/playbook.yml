@@ -4,3 +4,5 @@
   - role: prometheus-preconf
   - role: prometheus-download-files
   - role: prometheus-install
+  - role: node-exporter
+    when: "{{ prometheus_node_exporter_install  | default('yes') }} == 'yes'"
