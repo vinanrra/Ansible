@@ -1,0 +1,5 @@
+- hosts: localhost
+  become: true
+  roles:
+  - role: docker-install
+  - role: grafana-docker_compose

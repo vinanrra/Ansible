@@ -1,0 +1,12 @@
+
+# Grafana docker container name
+grafana_docker_container_name: grafana
+# Grafana docker image version
+grafana_docker_image_version: latest
+# Grafana docker plugins to be used
+# More info: https://grafana.com/docs/grafana/latest/installation/docker/#build-and-run-a-docker-image-with-pre-installed-plugins
+grafana_docker_plugins: grafana-clock-panel,grafana-simple-json-datasource
+# Grafana port to expose on host
+grafana_docker_container_port: 3000
+# Grafana docker network
+grafana_docker_container_network: host

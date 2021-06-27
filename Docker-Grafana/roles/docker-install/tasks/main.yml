@@ -1,0 +1,20 @@
+- name: Include Docker package list
+  include_vars: docker-pre-requisist.yml
+
+- name: Update repositories cache and install packages
+  apt:
+    name: "{{ docker_preconf_package_list }}"
+    update_cache: yes
+
+- name: Add Docker's official GPG key
+  shell: 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg'
+
+- name: Set up stable repository
+  command: 'echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null'
+
+- name: Update repositories cache and install latest docker version
+  apt:
+    name: "{{ docker_package_list }}"
+    update_cache: yes

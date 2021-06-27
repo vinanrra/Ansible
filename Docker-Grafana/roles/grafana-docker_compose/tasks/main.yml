@@ -1,0 +1,8 @@
+- name: Start Grafana docker container
+  command: 'docker run -d \
+  -p {{ grafana_docker_container_port }}:3000 \
+  --name={{ grafana_docker_container_name }} \
+  -e "GF_INSTALL_PLUGINS={{ grafana_docker_plugins }}" \
+  --network {{ grafana_docker_container_network }} \
+  grafana/grafana:{{ grafana_docker_image_version}}'
+  become: true

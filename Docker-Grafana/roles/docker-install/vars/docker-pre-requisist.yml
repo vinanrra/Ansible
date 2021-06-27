@@ -1,0 +1,10 @@
+docker_preconf_package_list:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg
+  - lsb-release
+docker_package_list:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
