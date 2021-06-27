@@ -23,9 +23,17 @@
     dest: /etc/systemd/system/
     mode: 0644
 
-- name: Enable Prometheus systemd daemon and start service
-  command: "{{ item }}"
-  with_items:
-    - systemctl daemon-reload
-    - systemctl start prometheus
-    - systemctl enable prometheus
+- name: Reload daemon
+  systemd:
+    daemon_reload: yes
+
+- name: Start Prometheus service
+  service:
+    name: prometheus
+    state: started
+
+- name: Enable Prometheus systemd daemon
+  systemd:
+    name: prometheus
+    enabled: yes
+    masked: no

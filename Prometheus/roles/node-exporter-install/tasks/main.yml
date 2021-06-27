@@ -14,12 +14,20 @@
     dest: /etc/systemd/system/
     mode: 0644
 
-- name: Enable Node Exporter systemd daemon and start service
-  command: "{{ item }}"
-  with_items:
-    - systemctl daemon-reload
-    - systemctl start node_exporter
-    - systemctl enable node_exporter
+- name: Reload daemon
+  systemd:
+    daemon_reload: yes
+
+- name: Start Node Exporter service
+  service:
+    name: node-exporter
+    state: started
+
+- name: Enable Node Exporter systemd daemon
+  systemd:
+    name: node-exporter
+    enabled: yes
+    masked: no
 
 - name: Add job to prometheus config
   blockinfile:
@@ -32,8 +40,7 @@
           static_configs:
             - targets: ['localhost:{{ node_exporter_port }}']
 
-- name: Restart Prometheus to apply changes
-  command: "{{ item }}"
-  with_items:
-    - sudo systemctl restart prometheus
-    
+- name: Restart Prometheus service
+  service:
+    name: prometheus
+    state: restarted
