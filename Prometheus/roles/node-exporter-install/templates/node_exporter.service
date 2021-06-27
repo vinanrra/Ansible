@@ -1,16 +1,18 @@
 [Unit]
 Description=Node Exporter
+Documentation=https://prometheus.io/docs/introduction/overview/
 Wants=network-online.target
 After=network-online.target 
 
 [Service]
 Type=simple
-User=node_exporter
-Group=node_exporter
-ExecStart={{ node_exporter_binary_install_dir }}/node_exporter --collector.textfile.directory={{ node_exporter_metrics_dir }}
+User={{ node_exporter_user }}
+Group={{ node_exporter_group }}
+ExecStart={{ node_exporter_binary_install_dir }}/node_exporter
+  --collector.textfile.directory={{ node_exporter_metrics_dir }}
+
+SyslogIdentifier=node_exporter
 Restart=always
-RestartSec=10s
-NotifyAccess=all 
 
 [Install]
 WantedBy=multi-user.target
