@@ -1,9 +1,10 @@
-- name: Install Prometheus
+- name: Install Prometheus binaries
   copy:
     src: "/tmp/prometheus/{{ prometheus_unarchive_folder.files[0] }}/{{ item }}"
-    dest: "/usr/local/bin/{{ item }}"
+    dest: "{{ prometheus_binary_install_dir }}/{{ item }}"
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
+    mode: 0755
   with_items:
       - prometheus
       - promtool
@@ -11,14 +12,16 @@
 - name: Add Prometheus template
   template:
     src: "{{ role_path }}/templates/prometheus.yml"
-    dest: /etc/prometheus/
+    dest: {{ prometheus_config_dir }}
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
+    mode: 0644
 
 - name: Create Prometheus systemd service
   template:
     src: "{{ role_path }}/templates/prometheus.service"
     dest: /etc/systemd/system/
+    mode: 0644
 
 - name: Enable Prometheus systemd daemon and start service
   command: "{{ item }}"

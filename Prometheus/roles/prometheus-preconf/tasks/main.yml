@@ -10,15 +10,15 @@
     group: "{{ prometheus_group }}"
     state: present
 
-- name: Create a /var/lib/prometheus if it does not exist
+- name: Create a {{ prometheus_db_dir }} if it does not exist
   file:
-    path: /var/lib/prometheus
+    path: {{ prometheus_db_dir }}
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
     state: directory
     mode: '0755'
 
-- name: Create a /etc/prometheus/ subdirectories if it does not exist
+- name: Create a {{ prometheus_config_dir }}/ subdirectories if it does not exist
   file:
     path: "{{ item }}"
     owner: "{{ prometheus_user }}"
@@ -26,13 +26,13 @@
     state: directory
     mode: '0755'
   with_items:
-    - /etc/prometheus/rules
-    - /etc/prometheus/rules.d
-    - /etc/prometheus/files_sd
+    - {{ prometheus_config_dir }}/rules
+    - {{ prometheus_config_dir }}/rules.d
+    - {{ prometheus_config_dir }}/files_sd
 
-- name: Create a /etc/prometheus/ if it does not exist
+- name: Create a {{ prometheus_config_dir }}/ if it does not exist
   file:
-    path: /etc/prometheus/
+    path: {{ prometheus_config_dir }}/
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
     state: directory

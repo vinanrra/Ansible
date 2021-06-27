@@ -1,4 +1,16 @@
+# Prometheus user
 prometheus_user: prometheus
+# Prometheus group
 prometheus_group: prometheus
+# Prometheus binaries directory
+prometheus_binary_install_dir: '/usr/local/bin'
+# Prometheus config directory
+prometheus_config_dir: /etc/prometheus
+# Prometheus database directory
+prometheus_db_dir: /var/lib/prometheus
+# Address on which prometheus will be listening
+prometheus_web_listen_address: "0.0.0.0"
+# Port on which prometheus will be listening
 prometheus_port: 9090
+# Prometheus URL package version to download
 prometheus_download_url: https://github.com/prometheus/prometheus/releases/download/v2.28.0/prometheus-2.28.0.linux-amd64.tar.gz
