@@ -20,3 +20,20 @@
     - systemctl daemon-reload
     - systemctl start node_exporter
     - systemctl enable node_exporter
+
+- name: Add job to prometheus config
+  blockinfile:
+    path: "{{ prometheus_config_dir }}/prometheus.yml"
+    insertafter: 'scrape_configs:'
+    block: |2
+        # Node exporter job
+        - job_name: 'node_exporter'
+          scrape_interval: {{ node_exporter_scrape_interval }}
+          static_configs:
+            - targets: ['localhost:{{ node_exporter_port }}']
+
+- name: Restart Prometheus to apply changes
+  command: "{{ item }}"
+  with_items:
+    - sudo systemctl restart prometheus
+    

@@ -31,7 +31,10 @@ node_exporter_group: node_exporter
 node_exporter_user: node_exporter
 # Node exporter URL package version to download
 node_exporter_download_url: https://github.com/prometheus/node_exporter/releases/download/v1.1.2/node_exporter-1.1.2.linux-amd64.tar.gz
-# Node Exporter metrics directory
+# Node Exporter metrics directory | Here you can add custom metrics
 node_exporter_metrics_dir: /prometheus/metrics
 # Node Exporter binaries directory
 node_exporter_binary_install_dir: '/usr/local/bin'
+# Node Exporter scrape interval
+node_exporter_scrape_interval: 5s
+node_exporter_port: 9100
