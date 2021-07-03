@@ -1,0 +1,8 @@
+disks_mount_directories:
+  - /mnt/2TB
+  - /mnt/6TB
+  - /mnt/6TB_07_2020
+disk_mount_fstab:
+  - UUID=827cc751-751d-4139-a479-7bc4b61d8614 /mnt/6TB/ ext4 defaults 0 0
+  - UUID=9bb14743-8c90-44d7-8a08-ca547e9d7a56 /mnt/2TB/ ext4 defaults 0 0
+  - UUID=0c4e7cbf-784d-4382-93bc-a1fd089f18ea /mnt/6TB_07_2020 ext4 defaults 0 0

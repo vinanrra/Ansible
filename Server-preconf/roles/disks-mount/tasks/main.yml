@@ -1,0 +1,35 @@
+- name: Create disk directories
+  file:
+    path: '/mnt/{{ item }}'
+    state: directory
+    mode: '0755'
+  with_items: '{{ disks_mount_directories }}'
+
+- name: Get devices UUID
+  command: |
+    ls -l /dev/disk/by-uuid/
+  register: devices_uuid
+
+- name: Show devices UUID
+  debug:
+    msg: "{{ devices_uuid.stdout }}"
+
+- name: Pause to copy UUIDs and add to variables
+  pause:
+    minutes: 5
+    prompt: "Make sure to add UUIDs to disks_mount_fstab variable."
+
+- name: Copy fstab
+  lineinfile:
+    path: /etc/fstab
+    line: '{{ item }}'
+    mode: 0755
+    insertafter: EOF
+    backup: yes
+  with_items: '{{ disks_mount_fstab }}'
+
+- name: mount all
+  command: mount -a
+  args:
+    warn: no
+  become: true
