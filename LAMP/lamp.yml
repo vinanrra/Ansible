@@ -1,0 +1,75 @@
+---
+  # Ejecutarlos en el grupo racknerd
+- hosts: {{ hosts }}
+  # Become sudo
+  become: yes
+  # Tasks
+  tasks:
+
+  - name: Update repositories
+    command: apt update
+
+  - name: Install packages
+    apt:
+      name:
+      - apache2
+      - php-fpm
+      - mysql-server
+      - php7.4-mysqli
+      - libapache2-mod-php7.4
+      - python3-pip
+      state: latest
+
+  - name: Set MySQL "root" pass
+    mysql_user:
+      login_host: '{{ mysql_login_host }}'
+      login_user: 'root'
+      login_password: '' # Without password, by defaul "root" user doesnt have it
+      name: 'root'
+      password: '{{ mysql_root_password }}'
+      state: present
+
+  - name: Create database for wordpress with name 
+    mysql_db:
+      login_user: root
+      login_password: '{{ mysql_root_password }}'
+      name: '{{ mysql_wordpress_database_name }}'
+      encoding: '{{ mysql_wordpress_database_encoding }}'
+      state: present
+      
+  - name: Create user for wordpress with permissions at {{ mysql_wordpress_database_name }} database
+    mysql_user:
+      login_user: root
+      login_password: '{{ mysql_root_password }}'
+      state: present
+      name: '{{ mysql_wordpress_username }}'
+      password: '{{ mysql_wordpress_password }}'
+      priv:
+        '{{ mysql_wordpress_database_name }}.*:ALL'
+
+  - name: Disable mpm_event and enable mpm_prefork, to avoid conflict with PHP module
+    block:
+      - name: Disable mpm_event Apache
+        command: a2dismod mpm_event
+
+      - name: Enable mpm_prefork
+        command: a2enmod mpm_prefork
+
+      - name: Restart apache
+        command: systemctl restart apache2
+      
+      - name: Enable Php
+        command: a2enmod php7.4
+      
+      - name: Restart apache
+        command: systemctl restart apache2
+  
+  - name: Download and extract Wordpress
+    unarchive:
+      src: https://wordpress.org/latest.tar.gz
+      dest: /var/www/html
+      remote_src: yes
+  
+  - name: Install pymysql
+    command: python3 -m pip install PyMySQL
+    

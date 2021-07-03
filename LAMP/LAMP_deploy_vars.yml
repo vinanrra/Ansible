@@ -1,0 +1,24 @@
+# Groups host to apply
+hosts: racknerd
+
+#########
+# MYSQL #
+#########
+
+# MySql host to connect
+mysql_login_host: localhost
+
+# MySql root password
+mysql_root_password: EXAMPLE 
+
+# MySql wordpress username
+mysql_wordpress_username: wordpress
+
+# MySql wordpress password
+mysql_wordpress_password: wordpress
+
+# Wordpress database name
+mysql_wordpress_database_name: wordpress
+
+# Wordpress database encoding
+mysql_wordpress_database_encoding: utf8
