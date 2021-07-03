@@ -1,0 +1,15 @@
+# INFO -> https://docs.ansible.com/ansible/latest/network/getting_started/first_inventory.html
+
+# Group name
+example:
+  # Exmaple hosts
+  hosts:
+    # Name
+    example_host:
+      # Variables
+      ansible_host: 000.000.000.000 # IP
+      ansible_python_interpreter: /usr/bin/python3 # Python interpreter path
+  # Global variable for "example" group
+  vars:
+    ansible_user: USERNAME
+    
