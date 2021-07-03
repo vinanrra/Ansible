@@ -1,5 +1,7 @@
 # Ansible Playbooks
     - Prometheus
+    - Grafana with Docker (Simple)
+    - LAMP (Simple installation)
 # Usage:
 ## Syntax
     ansible-playbook --ask-become-pass ./Ansible/STACK/playbook.yml -e @./Ansible/STACK/vars.yml
